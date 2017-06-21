@@ -167,7 +167,7 @@ The ADD instruction adds an integer register value (RN) with a second integer op
 	AN = RD[31];
 	AC = CARRY OUT;
 	AZ = (RD[31:0] == 0);
-	OV = (( RD[31] & ~RM[31] & ~RN[31] ) | ( ~RD[31] & RM[31] & RN[31] ))
+	AV = (( RD[31] & ~RM[31] & ~RN[31] ) | ( ~RD[31] & RM[31] & RN[31] ))
 	AVS = AVS | AV;
 ```
 
@@ -1705,11 +1705,11 @@ The SUB instruction subtracts an integer register value (OP2) from an integer va
 
 **Operation:**
 ```
-	RD = RN - OP2
+	RD = RN - OP2;
 	AN = RD[31];
 	AC = CARRY OUT;
 	AZ = (RD[31:0] == 0);
-	OV = (( RD[31] & ~RM[31] & ~RN[31] ) | ( ~RD[31] & RM[31] & RN[31] ))
+	AV = ((~RD[31] & ~RM[31] & RN[31] ) | ( RD[31] & RM[31] & ~RN[31] ));
 	AVS = AVS | AV;
 ```
 
